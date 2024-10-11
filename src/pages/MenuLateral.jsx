@@ -1,5 +1,5 @@
 import Opcoes from "./Opcoes";
-import './MenuLateral.css';
+import '../styles/MenuLateral.css';
 
 function MenuLateral(props) {
 

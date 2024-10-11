@@ -1,4 +1,4 @@
-import './MenuLateral.css';
+import '../styles/MenuLateral.css';
 
 function Opcoes() {
     
