@@ -1,89 +1,112 @@
 {
-    "periodos": {
-      "24 horas": {
-        "labels": ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"],
-        "dadosMaiores": [
-          { "dia": "Segunda", "sensor": "Sensor 301", "valor": 58 },
-          { "dia": "Terça", "sensor": "Sensor 423", "valor": 54 },
-          { "dia": "Quarta", "sensor": "Sensor 444", "valor": 52 },
-          { "dia": "Quinta", "sensor": "Sensor 627", "valor": 55 },
-          { "dia": "Sexta", "sensor": "Sensor 744", "valor": 65 },
-          { "dia": "Sábado", "sensor": "Sensor 501", "valor": 72 },
-          { "dia": "Domingo", "sensor": "Sensor 505", "valor": 66 }
-        ],
-        "dadosMenores": [
-          { "dia": "Segunda", "sensor": "Sensor 34", "valor": 15 },
-          { "dia": "Terça", "sensor": "Sensor 46", "valor": 21 },
-          { "dia": "Quarta", "sensor": "Sensor 435", "valor": 11 },
-          { "dia": "Quinta", "sensor": "Sensor 644", "valor": 4 },
-          { "dia": "Sexta", "sensor": "Sensor 757", "valor": 18 },
-          { "dia": "Sábado", "sensor": "Sensor 503", "valor": 10 },
-          { "dia": "Domingo", "sensor": "Sensor 505", "valor": 12 }
-        ]
-      },
-      "48 horas": {
-        "labels": ["Terça", "Quinta", "Sábado", "Domingo", "Segunda", "Quarta", "Sexta"],
-        "dadosMaiores": [
-          { "dia": "Terça", "sensor": "Sensor 701", "valor": 30 },
-          { "dia": "Quinta", "sensor": "Sensor 802", "valor": 45 },
-          { "dia": "Sábado", "sensor": "Sensor 903", "valor": 50 },
-          { "dia": "Domingo", "sensor": "Sensor 1004", "valor": 60 },
-          { "dia": "Segunda", "sensor": "Sensor 1105", "valor": 75 },
-          { "dia": "Quarta", "sensor": "Sensor 1206", "valor": 80 },
-          { "dia": "Sexta", "sensor": "Sensor 1307", "valor": 90 }
-        ],
-        "dadosMenores": [
-          { "dia": "Terça", "sensor": "Sensor 34", "valor": 10 },
-          { "dia": "Quinta", "sensor": "Sensor 46", "valor": 20 },
-          { "dia": "Sábado", "sensor": "Sensor 435", "valor": 5 },
-          { "dia": "Domingo", "sensor": "Sensor 644", "valor": 8 },
-          { "dia": "Segunda", "sensor": "Sensor 757", "valor": 12 },
-          { "dia": "Quarta", "sensor": "Sensor 503", "valor": 15 },
-          { "dia": "Sexta", "sensor": "Sensor 505", "valor": 18 }
-        ]
-      },
-      "1 semana": {
-        "labels": ["1ª Semana", "2ª Semana", "3ª Semana", "4ª Semana", "5ª Semana", "6ª Semana", "7ª Semana"],
-        "dadosMaiores": [
-          { "dia": "1ª Semana", "sensor": "Sensor 801", "valor": 70 },
-          { "dia": "2ª Semana", "sensor": "Sensor 902", "valor": 65 },
-          { "dia": "3ª Semana", "sensor": "Sensor 1003", "valor": 72 },
-          { "dia": "4ª Semana", "sensor": "Sensor 1104", "valor": 75 },
-          { "dia": "5ª Semana", "sensor": "Sensor 1205", "valor": 80 },
-          { "dia": "6ª Semana", "sensor": "Sensor 1306", "valor": 85 },
-          { "dia": "7ª Semana", "sensor": "Sensor 1407", "valor": 90 }
-        ],
-        "dadosMenores": [
-          { "dia": "1ª Semana", "sensor": "Sensor 21", "valor": 25 },
-          { "dia": "2ª Semana", "sensor": "Sensor 32", "valor": 15 },
-          { "dia": "3ª Semana", "sensor": "Sensor 43", "valor": 10 },
-          { "dia": "4ª Semana", "sensor": "Sensor 54", "valor": 20 },
-          { "dia": "5ª Semana", "sensor": "Sensor 65", "valor": 12 },
-          { "dia": "6ª Semana", "sensor": "Sensor 76", "valor": 18 },
-          { "dia": "7ª Semana", "sensor": "Sensor 87", "valor": 14 }
-        ]
-      },
-      "1 mes": {
-        "labels": ["Mês 1", "Mês 2", "Mês 3", "Mês 4", "Mês 5", "Mês 6", "Mês 7"],
-        "dadosMaiores": [
-          { "dia": "Mês 1", "sensor": "Sensor 901", "valor": 90 },
-          { "dia": "Mês 2", "sensor": "Sensor 1002", "valor": 85 },
-          { "dia": "Mês 3", "sensor": "Sensor 1103", "valor": 92 },
-          { "dia": "Mês 4", "sensor": "Sensor 1204", "valor": 88 },
-          { "dia": "Mês 5", "sensor": "Sensor 1305", "valor": 95 },
-          { "dia": "Mês 6", "sensor": "Sensor 1406", "valor": 80 },
-          { "dia": "Mês 7", "sensor": "Sensor 1507", "valor": 75 }
-        ],
-        "dadosMenores": [
-          { "dia": "Mês 1", "sensor": "Sensor 91", "valor": 25 },
-          { "dia": "Mês 2", "sensor": "Sensor 82", "valor": 20 },
-          { "dia": "Mês 3", "sensor": "Sensor 73", "valor": 15 },
-          { "dia": "Mês 4", "sensor": "Sensor 64", "valor": 18 },
-          { "dia": "Mês 5", "sensor": "Sensor 55", "valor": 12 },
-          { "dia": "Mês 6", "sensor": "Sensor 46", "valor": 14 },
-          { "dia": "Mês 7", "sensor": "Sensor 37", "valor": 10 }
-        ]
-      }
+  "periodos": {
+    "24 horas": {
+      "labels": [
+        "Segunda",
+        "Terça",
+        "Quarta",
+        "Quinta",
+        "Sexta",
+        "Sábado",
+        "Domingo"
+      ],
+      "dadosMaiores": [
+        { "dia": "Segunda", "sensor": "301", "valor": 58 },
+        { "dia": "Terça", "sensor": "423", "valor": 54 },
+        { "dia": "Quarta", "sensor": "444", "valor": 52 },
+        { "dia": "Quinta", "sensor": "627", "valor": 55 },
+        { "dia": "Sexta", "sensor": "744", "valor": 65 },
+        { "dia": "Sábado", "sensor": "501", "valor": 72 },
+        { "dia": "Domingo", "sensor": "505", "valor": 66 }
+      ],
+      "dadosMenores": [
+        { "dia": "Segunda", "sensor": "34", "valor": 15 },
+        { "dia": "Terça", "sensor": "46", "valor": 21 },
+        { "dia": "Quarta", "sensor": "435", "valor": 11 },
+        { "dia": "Quinta", "sensor": "644", "valor": 4 },
+        { "dia": "Sexta", "sensor": "757", "valor": 18 },
+        { "dia": "Sábado", "sensor": "503", "valor": 10 },
+        { "dia": "Domingo", "sensor": "505", "valor": 12 }
+      ]
+    },
+    "48 horas": {
+      "labels": [
+        "Terça",
+        "Quinta",
+        "Sábado",
+        "Domingo",
+        "Segunda",
+        "Quarta",
+        "Sexta"
+      ],
+      "dadosMaiores": [
+        { "dia": "Terça", "sensor": "701", "valor": 30 },
+        { "dia": "Quinta", "sensor": "802", "valor": 45 },
+        { "dia": "Sábado", "sensor": "903", "valor": 50 },
+        { "dia": "Domingo", "sensor": "1004", "valor": 60 },
+        { "dia": "Segunda", "sensor": "1105", "valor": 75 },
+        { "dia": "Quarta", "sensor": "1206", "valor": 80 },
+        { "dia": "Sexta", "sensor": "1307", "valor": 90 }
+      ],
+      "dadosMenores": [
+        { "dia": "Terça", "sensor": "34", "valor": 10 },
+        { "dia": "Quinta", "sensor": "46", "valor": 20 },
+        { "dia": "Sábado", "sensor": "435", "valor": 5 },
+        { "dia": "Domingo", "sensor": "644", "valor": 8 },
+        { "dia": "Segunda", "sensor": "757", "valor": 12 },
+        { "dia": "Quarta", "sensor": "503", "valor": 15 },
+        { "dia": "Sexta", "sensor": "505", "valor": 18 }
+      ]
+    },
+    "1 semana": {
+      "labels": [
+        "1ª Semana",
+        "2ª Semana",
+        "3ª Semana",
+        "4ª Semana",
+        "5ª Semana",
+        "6ª Semana",
+        "7ª Semana"
+      ],
+      "dadosMaiores": [
+        { "dia": "1ª Semana", "sensor": "801", "valor": 70 },
+        { "dia": "2ª Semana", "sensor": "902", "valor": 65 },
+        { "dia": "3ª Semana", "sensor": "1003", "valor": 72 },
+        { "dia": "4ª Semana", "sensor": "1104", "valor": 75 },
+        { "dia": "5ª Semana", "sensor": "1205", "valor": 80 },
+        { "dia": "6ª Semana", "sensor": "1306", "valor": 85 },
+        { "dia": "7ª Semana", "sensor": "1407", "valor": 90 }
+      ],
+      "dadosMenores": [
+        { "dia": "1ª Semana", "sensor": "21", "valor": 25 },
+        { "dia": "2ª Semana", "sensor": "32", "valor": 15 },
+        { "dia": "3ª Semana", "sensor": "43", "valor": 10 },
+        { "dia": "4ª Semana", "sensor": "54", "valor": 20 },
+        { "dia": "5ª Semana", "sensor": "65", "valor": 12 },
+        { "dia": "6ª Semana", "sensor": "76", "valor": 18 },
+        { "dia": "7ª Semana", "sensor": "87", "valor": 14 }
+      ]
+    },
+    "1 mes": {
+      "labels": ["Mês 1", "Mês 2", "Mês 3", "Mês 4", "Mês 5", "Mês 6", "Mês 7"],
+      "dadosMaiores": [
+        { "dia": "Mês 1", "sensor": "901", "valor": 90 },
+        { "dia": "Mês 2", "sensor": "1002", "valor": 85 },
+        { "dia": "Mês 3", "sensor": "1103", "valor": 92 },
+        { "dia": "Mês 4", "sensor": "1204", "valor": 88 },
+        { "dia": "Mês 5", "sensor": "1305", "valor": 95 },
+        { "dia": "Mês 6", "sensor": "1406", "valor": 80 },
+        { "dia": "Mês 7", "sensor": "1507", "valor": 75 }
+      ],
+      "dadosMenores": [
+        { "dia": "Mês 1", "sensor": "91", "valor": 25 },
+        { "dia": "Mês 2", "sensor": "82", "valor": 20 },
+        { "dia": "Mês 3", "sensor": "73", "valor": 15 },
+        { "dia": "Mês 4", "sensor": "64", "valor": 18 },
+        { "dia": "Mês 5", "sensor": "55", "valor": 12 },
+        { "dia": "Mês 6", "sensor": "46", "valor": 14 },
+        { "dia": "Mês 7", "sensor": "37", "valor": 10 }
+      ]
     }
   }
-  
+}

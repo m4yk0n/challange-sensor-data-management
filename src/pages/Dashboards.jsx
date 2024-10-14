@@ -4,7 +4,7 @@ import Graficos from "./Graficos";
 import { useState } from "react";
 
 function Dashboards() {
-  const periodos = ["24 horas", "48 horas", "1 semana", "1 mes"];
+  const periodos = ["24 horas", "48 horas", "1 semana", "1 mês"];
   const [indicePeriodo, setIndicePeriodo] = useState(0);
 
   function avancar() {
@@ -21,11 +21,7 @@ function Dashboards() {
 
   return (
     <div className="dashboard">
-      <KPI 
-        indicePeriodo={indicePeriodo} 
-        avancar={avancar} 
-        voltar={voltar} 
-      />
+      <KPI indicePeriodo={indicePeriodo} avancar={avancar} voltar={voltar} />
       <Graficos periodo={periodos[indicePeriodo]} />
     </div>
   );

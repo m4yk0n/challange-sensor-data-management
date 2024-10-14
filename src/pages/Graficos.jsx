@@ -12,15 +12,22 @@ import {
 import "../styles/Dashboards.css";
 
 // Registra os componentes necessários do Chart.js
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 function Graficos({ periodo }) {
   const [dados, setDados] = useState(null);
 
   useEffect(() => {
-    // Importando o arquivo JSON corretamente
+    // Importando o arquivo JSON
     const fetchData = async () => {
-      const response = await fetch("/dadosSensores.json"); // Ajuste o caminho aqui
+      const response = await fetch("/dadosSensores.json");
       const data = await response.json();
       setDados(data.periodos[periodo]);
     };
@@ -29,7 +36,15 @@ function Graficos({ periodo }) {
   }, [periodo]);
 
   // Mensagem de carregamento enquanto os dados não estão disponíveis
-  if (!dados) return <div>Carregando gráficos...</div>;
+  if (!dados) return (
+  <div className="graficos">
+    <div className="carregamento">
+      Carregando gráficos...
+    </div>
+
+  </div>
+
+  );
 
   const { labels, dadosMaiores, dadosMenores } = dados;
 
@@ -41,6 +56,7 @@ function Graficos({ periodo }) {
         label: "Maiores Médias",
         data: dadosMaiores.map((d) => d.valor),
         backgroundColor: "rgb(178,34,34)",
+        sensors: dadosMaiores.map((d) => d.sensor),
       },
     ],
   };
@@ -52,6 +68,7 @@ function Graficos({ periodo }) {
         label: "Menores Médias",
         data: dadosMenores.map((d) => d.valor),
         backgroundColor: "rgb(30,144,255)",
+        sensors: dadosMenores.map((d) => d.sensor),
       },
     ],
   };
@@ -61,22 +78,35 @@ function Graficos({ periodo }) {
     responsive: true,
     plugins: {
       legend: {
-        position: "top",
+        display: false,
       },
-      title: {
-        display: true,
-        text: `Dados de Sensores para o Período de ${periodo}`,
+      tooltip: {
+        callbacks: {
+          // Modifica o tooltip para exibir sensor e valor
+          label: function (tooltipItem) {
+            const dataset = tooltipItem.dataset;
+            const sensor = dataset.sensors
+              ? dataset.sensors[tooltipItem.dataIndex]
+              : "Não disponível";
+            const valor = dataset.data[tooltipItem.dataIndex];
+            return `Sensor: ${sensor} - Temperatura: ${valor}ºC`;
+          },
+        },
       },
     },
   };
 
   return (
-    <div className="graficos-container">
-      <h2>Gráfico de Maiores Dados</h2>
-      <Bar data={dataMaiores} options={options} />
+    <div className="graficos">
+      <div className="grafico-maiores">
+        <h2>Maiores Médias Registradas</h2>
+        <Bar data={dataMaiores} options={options} />
+      </div>
 
-      <h2>Gráfico de Menores Dados</h2>
-      <Bar data={dataMenores} options={options} />
+      <div className="grafico-menores">
+        <h2>Menores Médias Registradas</h2>
+        <Bar data={dataMenores} options={options} />
+      </div>
     </div>
   );
 }

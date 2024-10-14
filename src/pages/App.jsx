@@ -8,11 +8,7 @@ function App() {
       <MenuLateral />
       <Dashboards />
     </div>
-  )
+  );
+}
 
-};
-
-
-export default (
-  App
-);
+export default App;
