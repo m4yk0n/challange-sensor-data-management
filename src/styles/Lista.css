@@ -1,0 +1,40 @@
+.lSensores {
+    display: flex;
+    background-color: blue;
+}
+
+.lista {
+    display: flex;
+    flex-direction: row;
+    background-color: red;
+    width: 84.18vw;
+}
+
+.equip, .dtHora, .temp {
+    width: 100%;
+    padding-top: 25px;
+    display: flex;
+    align-items: center;
+    /* border: outset black 2px; */
+    flex-direction: column;
+}
+
+.equip {
+    background-color: aqua;
+}
+
+.dtHora {
+    background-color: yellow;
+}
+
+.temp {
+    background-color: blueviolet;
+}
+
+.data {
+    border: outset black 2px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

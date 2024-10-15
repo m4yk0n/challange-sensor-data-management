@@ -1,5 +1,6 @@
 import MenuLateral from "./MenuLateral";
 import Dashboards from "./Dashboards";
+import ListaSensores from "./ListaSensores";
 import "../styles/App.css";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className="inicio">
       <MenuLateral />
       <Dashboards />
+      {/* <ListaSensores /> */}
     </div>
   );
 }
