@@ -87,7 +87,7 @@
         { "dia": "7ª Semana", "sensor": "87", "valor": 14 }
       ]
     },
-    "1 mes": {
+    "1 mês": {
       "labels": ["Mês 1", "Mês 2", "Mês 3", "Mês 4", "Mês 5", "Mês 6", "Mês 7"],
       "dadosMaiores": [
         { "dia": "Mês 1", "sensor": "901", "valor": 90 },

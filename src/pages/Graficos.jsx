@@ -36,15 +36,12 @@ function Graficos({ periodo }) {
   }, [periodo]);
 
   // Mensagem de carregamento enquanto os dados não estão disponíveis
-  if (!dados) return (
-  <div className="graficos">
-    <div className="carregamento">
-      Carregando gráficos...
-    </div>
-
-  </div>
-
-  );
+  if (!dados)
+    return (
+      <div className="graficos">
+        <div className="carregamento">Carregando gráficos...</div>
+      </div>
+    );
 
   const { labels, dadosMaiores, dadosMenores } = dados;
 

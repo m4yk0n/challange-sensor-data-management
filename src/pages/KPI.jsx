@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import "../styles/Dashboards.css";
 
 function KPI({ indicePeriodo, avancar, voltar }) {
-  const periodos = ["24 horas", "48 horas", "1 semana", "1 mes"];
+  const periodos = ["24 horas", "48 horas", "1 semana", "1 mês"];
+
+  // Desabilitar navegação das KPIs
+  const maxEsquerda = indicePeriodo === 0;
+  const maxDireita = indicePeriodo === periodos.length - 1;
 
   // Médias de temperatura
   const [maiorMedia, setMaiorMedia] = useState(0);
@@ -59,30 +63,35 @@ function KPI({ indicePeriodo, avancar, voltar }) {
 
   return (
     <div className="KPIS">
-      <h2>KPIs</h2>
+      <h2 className="nav">Escolha <br /> Um Período</h2>
       <h3 className="navegacao-kpis">
-        <span id="voltar" onClick={voltar}>
-          {" "}
-          &#9664;{" "}
+        <span id="voltar"
+        onClick={!maxEsquerda ? voltar : null}
+        className={maxEsquerda ? "atingido" : ""}
+        >
+          &#9664;
         </span>
         <p>{periodos[indicePeriodo]}</p>
-        <span id="avancar" onClick={avancar}>
-          {" "}
-          &#9654;{" "}
+        <span id="avancar"
+        onClick={!maxDireita ? avancar : null}
+        className={maxDireita ? "atingido" : ""}
+        >
+          &#9654;
         </span>
       </h3>
+          {/* <h2>KPIs</h2> */}
       <div className="KPI">
-        <h3>MAIOR</h3>
+        <h3>MAIOR MÉDIA</h3>
         <span className="indicador">{maiorMedia}ºC</span>
         <p>Sensor {maiorSensor}</p>
       </div>
       <div className="KPI">
-        <h3>MENOR</h3>
+        <h3>MENOR MÉDIA</h3>
         <span className="indicador">{menorMedia}ºC</span>
         <p>Sensor {menorSensor}</p>
       </div>
       <div className="KPI">
-        <h3>TOTAL</h3>
+        <h3>TOTAL SENSORES</h3>
         <span className="indicador">{totalSensor}</span>
         <p>OPERANDO</p>
       </div>

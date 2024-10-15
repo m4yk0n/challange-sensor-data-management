@@ -16,6 +16,12 @@
   gap: 20px;
 }
 
+.nav {
+  display: flex;
+  text-align: center;
+  font-size: 28px;
+}
+
 #voltar #avancar {
   color: black;
   cursor: pointer;
@@ -45,6 +51,15 @@
 
 .navegacao-kpis span:hover {
   color: red;
+}
+
+.navegacao-kpis span.atingido {
+  color: #595959;
+  cursor: not-allowed;
+}
+
+.navegacao-kpis span.atingido:hover {
+  color: #595959;
 }
 
 .KPI {
@@ -93,6 +108,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
+  font-size: 50px;
   margin-top: 39.32%;
 }
+
