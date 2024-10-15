@@ -1,31 +1,32 @@
+import React from "react";
 import "../styles/MenuLateral.css";
 
-function Opcoes() {
+function Opcoes({ onChangeComponente }) { // Adiciona a função como prop
   return (
     <div className="opcoes">
       <ul>
         <li>
-          <a className="opcao" href="#">
-            Dashboard Principal
+          <a className="opcao" href="#" onClick={() => onChangeComponente("Dashboards")}>
+            Dashboard
           </a>
         </li>
         <li id="dash">
-          <a className="opcao" href="#">
-            Dashboard filtrada
+          <a className="opcao" href="#" onClick={() => onChangeComponente("Sensores")}>
+            Sensores
           </a>
         </li>
         <li>
-          <a className="opcao" href="#">
+          <a className="opcao" href="#" onClick={() => onChangeComponente("Configuracoes")}>
             Configurações
           </a>
         </li>
         <li>
-          <a className="opcao" href="#">
+          <a className="opcao" href="#" onClick={() => onChangeComponente("Suporte")}>
             Suporte
           </a>
         </li>
         <li className="sair">
-          <a className="opcao" href="#">
+          <a className="opcao" href="#" onClick={() => onChangeComponente("Encerrar")}>
             Encerrar Sessão
           </a>
         </li>

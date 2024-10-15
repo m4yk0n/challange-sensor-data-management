@@ -8,7 +8,7 @@ function MenuLateral(props) {
     <div className="menuLateral">
       <img src={props.imagemUsuario} />
       <h1>Olá, {usuario}!</h1>
-      <Opcoes />
+      <Opcoes onChangeComponente={props.onChangeComponente} />
     </div>
   );
 }
