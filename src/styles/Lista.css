@@ -23,6 +23,12 @@
     background-color: aqua;
 }
 
+.equip p:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
 .dtHora {
     background-color: yellow;
 }

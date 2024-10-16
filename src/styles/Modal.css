@@ -4,7 +4,7 @@
     left: 0;
     width: 100vw; 
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: #00000080; 
     display: flex;
     align-items: center; 
     justify-content: center; 
@@ -12,11 +12,61 @@
   }
   
   .modal-content {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    width: 400px;
+    background-color: hsl(0, 0%, 100%);
+    padding: 50px;
+    border-radius: 30px 3px 30px 3px;
+    width: 450px;
     max-height: 80vh;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .botao-modal {
+    background-color: violet;
+    cursor: pointer;
+    width: 50%;
+    height: 30px;
+    font-size: 15px;
+  }
+
+  .titulo-modal {
+    width: 100%;
+    background-color: red;
+    font-size: 38px;
+    text-align: center;
+  }
+
+  .titulo-modal b {
+    color: yellow;
+  }
+
+  .subtitulo-modal {
+    background-color: palevioletred;
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+  } 
+
+  .indicador-modal {
+    width: 100%;
+    background-color: wheat;
+    font-size: 18px;
+    border: solid black 2px;
+  }
+
+  .conjunto-lista {
+    background-color: yellow;
+    width: 90%;
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+  
+  .lista-leituras {
+    background-color: blue;
+    color: white;
+    margin: 10px;
   }
   
