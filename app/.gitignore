@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Ignore Apollo Client cache files
+.apollo/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

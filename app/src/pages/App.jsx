@@ -31,3 +31,17 @@ function App() {
 }
 
 export default App;
+
+// import React from 'react';
+// import Usuarios from './Usuarios';
+
+// const App = () => {
+//   return (
+//     <div>
+//       <h1>Lista de Usuários</h1>
+//       <Usuarios />
+//     </div>
+//   );
+// };
+
+// export default App;
