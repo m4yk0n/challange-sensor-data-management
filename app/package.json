@@ -1,5 +1,5 @@
 {
-  "name": "challange-sensor-data-management",
+  "name": "app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.11.8",
     "chart.js": "^4.4.4",
+    "graphql": "^16.9.0",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1"
