@@ -1,0 +1,75 @@
+import React, { useState } from "react";
+import { useMutation, gql } from "@apollo/client";
+
+const LOGIN_MUTATION = gql`
+  mutation Login($email: String!, $senha: String!) {
+    login(email: $email, senha: $senha) {
+      success
+      message
+      usuario {
+        idUsuario
+        nome
+        email
+        senha
+      }
+    }
+  }
+`;
+
+const LoginUsuario = ({ onLogin }) => {
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [error, setError] = useState("");
+
+  const [login] = useMutation(LOGIN_MUTATION);
+
+  const formularioLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      const { data } = await login({ variables: { email, senha } });
+      console.log(data); // Log para verificar o que está sendo retornado
+
+      if (data && data.login) {
+        const { success, message } = data.login;
+
+        if (success) {
+          onLogin(data.login); // Chama a função de login passada como prop
+        } else {
+          setError(message || "Login falhou.");
+          console.error(`Erro no login: ${message || "Login falhou."}`);
+        }
+      } else {
+        setError("Resposta inesperada do servidor: login é null.");
+        console.error("Resposta inesperada do servidor:", data);
+      }
+    } catch (err) {
+      console.error("Erro na requisição:", err);
+      setError("Erro ao conectar-se ao servidor.");
+    }
+  };
+
+  return (
+    <form onSubmit={formularioLogin}>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Senha"
+        value={senha}
+        onChange={(e) => setSenha(e.target.value)}
+        required
+      />
+      <button type="submit">Login</button>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+    </form>
+  );
+};
+
+export default LoginUsuario;
