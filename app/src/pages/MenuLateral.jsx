@@ -1,14 +1,23 @@
 import Opcoes from "./Opcoes";
 import "../styles/MenuLateral.css";
+import React, { useEffect, useState } from "react";
 
 function MenuLateral(props) {
-  const usuario = props.nome ? props.nome : "undefined";
+  const [nomeUsuario, setNomeUsuario] = useState("");
+
+  useEffect(() => {
+    const nome = sessionStorage.getItem("nomeUsuario");
+    if (nome) {
+      setNomeUsuario(nome);
+    } else {
+      setNomeUsuario("undefined");
+    }
+  }, []);
 
   return (
     <div className="menuLateral">
-      <img src={props.imagemUsuario} />
-      <h1>Olá, {usuario}!</h1>
-      <Opcoes onChangeComponente={props.onChangeComponente} />
+      <h1>Olá, {nomeUsuario}!</h1>
+      <Opcoes onChangeComponente={props.onChangeComponente} onLogout={props.onLogout} />
     </div>
   );
 }

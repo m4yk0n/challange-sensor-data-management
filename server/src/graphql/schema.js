@@ -5,7 +5,6 @@ const schema = buildSchema(`
     idUsuario: Int
     nome: String
     email: String
-    senha: String
   }
 
   type Sensor {

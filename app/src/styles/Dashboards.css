@@ -82,7 +82,7 @@
   grid-template-rows: repeat(2, 1fr); /* Duas linhas */
   margin-right: 11px;
   gap: 10px;
-  width: 60rem;
+  width: 63vw;
   align-items: center;
   justify-content: center;
 }

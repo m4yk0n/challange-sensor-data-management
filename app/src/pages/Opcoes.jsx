@@ -1,7 +1,17 @@
 import React from "react";
 import "../styles/MenuLateral.css";
+import { useNavigate } from "react-router-dom";
 
-function Opcoes({ onChangeComponente }) { // Adiciona a função como prop
+function Opcoes({ onChangeComponente, onLogout }) { // Adiciona a função como prop
+
+  const navigate = useNavigate();
+  const encerrarSessao = () => {
+    // Chama a função de logout
+    onLogout();
+    // Redireciona para a tela de login
+    navigate("/LoginUsuario");
+  };
+
   return (
     <div className="opcoes">
       <ul>
@@ -26,7 +36,7 @@ function Opcoes({ onChangeComponente }) { // Adiciona a função como prop
           </a>
         </li>
         <li className="sair">
-          <a className="opcao" href="#" onClick={() => onChangeComponente("Encerrar")}>
+          <a className="opcao" href="#" onClick={encerrarSessao}>
             Encerrar Sessão
           </a>
         </li>

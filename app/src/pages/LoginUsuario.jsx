@@ -10,7 +10,6 @@ const LOGIN_MUTATION = gql`
         idUsuario
         nome
         email
-        senha
       }
     }
   }
@@ -32,9 +31,12 @@ const LoginUsuario = ({ onLogin }) => {
       console.log(data); // Log para verificar o que está sendo retornado
 
       if (data && data.login) {
-        const { success, message } = data.login;
+        const { success, message, usuario } = data.login;
 
         if (success) {
+          sessionStorage.setItem("idUsuario", usuario.idUsuario);
+          sessionStorage.setItem("nomeUsuario", usuario.nome);
+
           onLogin(data.login); // Chama a função de login passada como prop
         } else {
           setError(message || "Login falhou.");
