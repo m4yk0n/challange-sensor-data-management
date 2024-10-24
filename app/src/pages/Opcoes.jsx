@@ -2,14 +2,12 @@ import React from "react";
 import "../styles/MenuLateral.css";
 import { useNavigate } from "react-router-dom";
 
-function Opcoes({ onChangeComponente, onLogout }) { // Adiciona a função como prop
+function Opcoes({ onChangeComponente, onLogout }) {
 
   const navigate = useNavigate();
+  
   const encerrarSessao = () => {
-    // Chama a função de logout
-    onLogout();
-    // Redireciona para a tela de login
-    navigate("/LoginUsuario");
+    onLogout();    
   };
 
   return (

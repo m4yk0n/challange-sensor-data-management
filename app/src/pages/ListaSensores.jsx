@@ -4,8 +4,15 @@ import "../styles/Dashboards.css";
 import "../styles/Lista.css";
 
 function ListaSensores() {
-  const [sensores, setSensores] = useState([]); 
-  const [sensorSelecionado, setSensorSelecionado] = useState(null); 
+  useEffect(() => {
+    document.title = "GUI | SENSORES"; // Altera o título da aba
+
+    return () => {
+      document.title = "Gas Utilities Inc."; // Opcional: restaura o título ao desmontar
+    };
+  }, []);
+  const [sensores, setSensores] = useState([]);
+  const [sensorSelecionado, setSensorSelecionado] = useState(null);
 
   // Função para buscar os dados do JSON
   useEffect(() => {
@@ -21,7 +28,7 @@ function ListaSensores() {
   const calcularMedia = (leituras) => {
     if (!leituras || leituras.length === 0) return 0;
     const total = leituras.reduce((acc, leitura) => acc + leitura.value, 0);
-    return (total / leituras.length).toFixed(2); 
+    return (total / leituras.length).toFixed(2);
   };
 
   // Função para definir o status do sensor
@@ -70,18 +77,19 @@ function ListaSensores() {
 
       {sensorSelecionado && (
         <Modal
-        sensor={{
-          id: sensorSelecionado.equipmentId,
-          mediaTemp: calcularMedia(sensorSelecionado.leituras), 
-          status: definirStatus(calcularMedia(sensorSelecionado.leituras)),
-          leituras: sensorSelecionado.leituras ? sensorSelecionado.leituras.map((leitura) => ({
-            data: leitura.timestamp,
-            temp: leitura.value,
-          })) : [],
-        }}
-        fecharModal={() => setSensorSelecionado(null)}
-      />
-      
+          sensor={{
+            id: sensorSelecionado.equipmentId,
+            mediaTemp: calcularMedia(sensorSelecionado.leituras),
+            status: definirStatus(calcularMedia(sensorSelecionado.leituras)),
+            leituras: sensorSelecionado.leituras
+              ? sensorSelecionado.leituras.map((leitura) => ({
+                  data: leitura.timestamp,
+                  temp: leitura.value,
+                }))
+              : [],
+          }}
+          fecharModal={() => setSensorSelecionado(null)}
+        />
       )}
     </div>
   );

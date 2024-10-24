@@ -1,0 +1,101 @@
+.login-page {
+background-color: yellowgreen;
+width: 100vw;
+height: 100vh;
+display: flex;
+}
+
+.esquerda {
+    background-color: blue;
+    width: 60vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.esquerda img {
+    background-color: yellow;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.formulario {
+    background-color: blueviolet;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.formulario form {
+    background-color: yellow;
+    width: 80%;
+    height: 70%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.saudacoes {
+    background-color: red;
+    width: 100%;
+    text-align: center;
+    padding: 35px;
+    font-size: 30px;
+}
+
+.email, .senha {
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 30%;
+    padding: 35px;
+    margin-bottom: -40px;
+    font-size: 25px;
+    /* padding: 10px; */
+}
+
+.senha {
+    margin-bottom: 40px;
+}
+
+.email input, .senha input{
+    height: 50px;
+    border-radius: 2px 20px 2px 20px;
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+.botao-erro {
+    background-color: green;
+    width: 100%;
+    height: 30%;
+    margin-top: -40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.botao-erro button {
+    width: 50%;
+    height: 30%;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.botao-erro button:hover {
+    background-color: blue;
+    color: #fff;
+    transition: all 0.2s;
+}
+
+.botao-erro p {
+    color: #500101;
+    font-size: 20px;
+}

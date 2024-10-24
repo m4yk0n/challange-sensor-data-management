@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation, gql } from "@apollo/client";
+import "../styles/Login.css";
 
 const LOGIN_MUTATION = gql`
   mutation Login($email: String!, $senha: String!) {
@@ -16,6 +17,13 @@ const LOGIN_MUTATION = gql`
 `;
 
 const LoginUsuario = ({ onLogin }) => {
+  useEffect(() => {
+    document.title = "Gas Utilities Inc. | Login"; // Altera o título da aba
+
+    return () => {
+      document.title = "Gas Utilities Inc."; // Opcional: restaura o título ao desmontar
+    };
+  }, []);
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
@@ -53,24 +61,42 @@ const LoginUsuario = ({ onLogin }) => {
   };
 
   return (
-    <form onSubmit={formularioLogin}>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Senha"
-        value={senha}
-        onChange={(e) => setSenha(e.target.value)}
-        required
-      />
-      <button type="submit">Login</button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-    </form>
+    <div className="login-page">
+      <div className="esquerda">
+        <img src="https://static.vecteezy.com/ti/fotos-gratis/t1/29342876-ai-gerado-ai-generativo-mar-oceano-nautico-marinho-no-mar-perfuracao-oleo-gas-plataforma-estacao-grafico-arte-foto.jpg" alt="Imagem de Fundo de Plataforma de Óleo" />
+      </div>
+      <div className="formulario">
+        <form onSubmit={formularioLogin}>
+          <span className="saudacoes">
+            <h2>Bem vindo(a) de volta!</h2>
+          </span>
+          <span className="email">
+            Insira seu email:
+            <input
+              type="email"
+              placeholder="seuemail@gmail.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </span>
+          <span className="senha">
+            Insira sua senha:
+            <input
+              type="password"
+              placeholder="********"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              required
+            />
+          </span>
+          <span className="botao-erro">
+            <button type="submit">Login</button>
+            {error && <p>{error}</p>}
+          </span>
+        </form>
+      </div>
+    </div>
   );
 };
 

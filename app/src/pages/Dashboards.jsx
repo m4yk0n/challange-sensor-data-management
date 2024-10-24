@@ -1,9 +1,17 @@
 import "../styles/Dashboards.css";
 import KPI from "./KPI";
 import Graficos from "./Graficos";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Dashboards() {
+  useEffect(() => {
+    document.title = "GUI | DASHBOARD"; // Altera o título da aba
+
+    return () => {
+      document.title = "Gas Utilities Inc."; // Opcional: restaura o título ao desmontar
+    };
+  }, []);
+
   const periodos = ["24 horas", "48 horas", "1 semana", "1 mês"];
   const [indicePeriodo, setIndicePeriodo] = useState(0);
 
