@@ -16,13 +16,21 @@ const schema = buildSchema(`
     idLeitura: Int
     fkSensor: String
     dtLeitura: String
-    temperatura: Float
+    media_temperatura: Float
+  }
+  
+  type LeituraPeriodos {
+  ultimas24Horas: [LeituraSensor]
+  ultimas48Horas: [LeituraSensor]
+  ultimos7Dias: [LeituraSensor]
+  ultimos30Dias: [LeituraSensor]
   }
 
   type Query {
     usuarios(email: String, senha: String!): [Usuario]
-    sensores: [Sensor]
-    leituras: [LeituraSensor]
+    sensores(fkUsuario: Int): [Sensor]
+    leituras(fkSensor: String): [LeituraSensor]
+    leiturasPeriodos(fkUsuario: Int): LeituraPeriodos
   }
   
   type Mutation {

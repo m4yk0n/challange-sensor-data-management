@@ -16,7 +16,7 @@ function MenuLateral(props) {
 
   return (
     <div className="menuLateral">
-      <h1>Olá, {nomeUsuario}!</h1>
+      <h1>Bem vindo {nomeUsuario}!</h1>
       <Opcoes onChangeComponente={props.onChangeComponente} onLogout={props.onLogout} />
     </div>
   );

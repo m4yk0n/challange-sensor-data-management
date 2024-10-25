@@ -1,11 +1,13 @@
+/* 59db79 */
+body {
+  background-color: #59db7941;
+}
 .dashboard {
   display: flex;
-  background-color: blue;
   gap: 20px;
 }
 
 .KPIS {
-  background-color: aquamarine;
   width: 40vh;
   height: 100vh;
   display: flex;
@@ -22,26 +24,19 @@
   font-size: 28px;
 }
 
-#voltar #avancar {
-  color: black;
-  cursor: pointer;
-}
-
-#voltar #avancar:hover {
-  color: red;
-}
-
 .navegacao-kpis {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px; /* Espaçamento entre os itens */
+  gap: 20px;
+  color: #2f713f;
 }
 
 .navegacao-kpis p {
   margin: 0;
   font-size: 24px;
   font-weight: bold;
+  color: #000;
 }
 
 .navegacao-kpis span {
@@ -50,11 +45,11 @@
 }
 
 .navegacao-kpis span:hover {
-  color: red;
+  color: #59db79;
 }
 
 .navegacao-kpis span.atingido {
-  color: #595959;
+  color: #44a15bbc;
   cursor: not-allowed;
 }
 
@@ -69,12 +64,16 @@
   height: 25%;
   padding: 20px;
   align-items: center;
-  background-color: blueviolet;
+  background-color: #1c442698;
   border-radius: 30px 3px 30px 3px;
+  color: #ffffff;
 }
 
 .indicador {
   font-size: 80px;
+  margin-top: -10px;
+  margin-bottom: -25px;
+  color: #59db79;
 }
 
 .graficos {
@@ -89,7 +88,8 @@
 
 .grafico-maiores,
 .grafico-menores {
-  background-color: aqua;
+  color: #fff;
+  background-color: #2f713faf;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,7 +104,6 @@
 .carregamento {
   width: 100vh;
   height: 10vh;
-  background-color: aqua;
   display: flex;
   justify-content: center;
   align-items: center;

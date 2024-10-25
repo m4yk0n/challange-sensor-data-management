@@ -62,16 +62,13 @@ const LoginUsuario = ({ onLogin }) => {
 
   return (
     <div className="login-page">
-      <div className="esquerda">
-        <img src="https://static.vecteezy.com/ti/fotos-gratis/t1/29342876-ai-gerado-ai-generativo-mar-oceano-nautico-marinho-no-mar-perfuracao-oleo-gas-plataforma-estacao-grafico-arte-foto.jpg" alt="Imagem de Fundo de Plataforma de Óleo" />
-      </div>
       <div className="formulario">
         <form onSubmit={formularioLogin}>
           <span className="saudacoes">
             <h2>Bem vindo(a) de volta!</h2>
           </span>
           <span className="email">
-            Insira seu email:
+            <p>Insira seu email:</p>
             <input
               type="email"
               placeholder="seuemail@gmail.com"
@@ -81,17 +78,18 @@ const LoginUsuario = ({ onLogin }) => {
             />
           </span>
           <span className="senha">
-            Insira sua senha:
+            <p>Insira sua senha:</p>
             <input
               type="password"
               placeholder="********"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
               required
-            />
+              />
           </span>
           <span className="botao-erro">
             <button type="submit">Login</button>
+            <a href="#">Esqueceu a Senha?</a>
             {error && <p>{error}</p>}
           </span>
         </form>

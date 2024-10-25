@@ -1,37 +1,40 @@
 import React, { useState, useEffect } from "react";
-import Modal from "./Modal"; // Importa o modal
+import Modal from "./Modal"; 
 import "../styles/Dashboards.css";
 import "../styles/Lista.css";
+import { useQuery, gql } from "@apollo/client";
+
+const LISTAR_SENSORES = gql`
+  query LeiturasPeriodos($fkUsuario: Int!) {
+    leiturasPeriodos(fkUsuario: $fkUsuario) {
+      ultimas24Horas {
+        fkSensor
+        media_temperatura
+      }
+    }
+  }
+`;
 
 function ListaSensores() {
-  useEffect(() => {
-    document.title = "GUI | SENSORES"; // Altera o título da aba
+  const fkUsuario = parseInt(sessionStorage.getItem("idUsuario"), 10);
+  const [sensorSelecionado, setSensorSelecionado] = useState(null);
+  
+  const { loading, error, data } = useQuery(LISTAR_SENSORES, {
+    variables: { fkUsuario },
+  });
 
+  useEffect(() => {
+    document.title = "GUI | SENSORES"; 
     return () => {
-      document.title = "Gas Utilities Inc."; // Opcional: restaura o título ao desmontar
+      document.title = "Gas Utilities Inc.";
     };
   }, []);
-  const [sensores, setSensores] = useState([]);
-  const [sensorSelecionado, setSensorSelecionado] = useState(null);
 
-  // Função para buscar os dados do JSON
-  useEffect(() => {
-    fetch("/leituraSensores.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setSensores(data.sensores);
-      })
-      .catch((error) => console.error("Erro ao buscar os dados:", error));
-  }, []);
+  if (loading) return <p>Carregando...</p>;
+  if (error) return <p>Erro ao buscar sensores: {error.message}</p>;
 
-  // Função para calcular a média das leituras de temperatura
-  const calcularMedia = (leituras) => {
-    if (!leituras || leituras.length === 0) return 0;
-    const total = leituras.reduce((acc, leitura) => acc + leitura.value, 0);
-    return (total / leituras.length).toFixed(2);
-  };
+  const sensores = data.leiturasPeriodos.ultimas24Horas;
 
-  // Função para definir o status do sensor
   const definirStatus = (media) => {
     if (media > 80) return "Alto";
     if (media < 60) return "Baixo";
@@ -46,28 +49,27 @@ function ListaSensores() {
           {sensores.map((sensor) => (
             <p
               className="data"
-              key={sensor.equipmentId}
+              key={sensor.fkSensor}
               onClick={() => setSensorSelecionado(sensor)}
             >
-              {sensor.equipmentId}
+              {sensor.fkSensor}
             </p>
           ))}
         </span>
         <span className="dtHora">
           <h2>MÉDIA DIÁRIA</h2>
           {sensores.map((sensor) => (
-            <p className="data" key={sensor.equipmentId + "-media"}>
-              {calcularMedia(sensor.leituras)}ºC
+            <p className="data" key={sensor.fkSensor + "-media"}>
+              {sensor.media_temperatura}ºC
             </p>
           ))}
         </span>
         <span className="temp">
           <h2>STATUS</h2>
           {sensores.map((sensor) => {
-            const media = calcularMedia(sensor.leituras);
-            const status = definirStatus(media);
+            const status = definirStatus(sensor.media_temperatura);
             return (
-              <p className="data" key={sensor.equipmentId + "-status"}>
+              <p className="data" key={sensor.fkSensor + "-status"}>
                 {status}
               </p>
             );
@@ -78,15 +80,9 @@ function ListaSensores() {
       {sensorSelecionado && (
         <Modal
           sensor={{
-            id: sensorSelecionado.equipmentId,
-            mediaTemp: calcularMedia(sensorSelecionado.leituras),
-            status: definirStatus(calcularMedia(sensorSelecionado.leituras)),
-            leituras: sensorSelecionado.leituras
-              ? sensorSelecionado.leituras.map((leitura) => ({
-                  data: leitura.timestamp,
-                  temp: leitura.value,
-                }))
-              : [],
+            idSensor: sensorSelecionado.fkSensor,
+            mediaTemp: sensorSelecionado.media_temperatura,
+            status: definirStatus(sensorSelecionado.media_temperatura),
           }}
           fecharModal={() => setSensorSelecionado(null)}
         />

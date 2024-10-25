@@ -1,101 +1,114 @@
 .login-page {
-background-color: yellowgreen;
-width: 100vw;
-height: 100vh;
-display: flex;
-}
-
-.esquerda {
-    background-color: blue;
-    width: 60vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.esquerda img {
-    background-color: yellow;
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-image: url("../assets/fundo.jpg");
+  background-size: cover;
+  justify-content: end;
 }
 
 .formulario {
-    background-color: blueviolet;
-    width: 40vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  backdrop-filter: blur(20px);
+  background-color: #00000041;
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px #00000041;
 }
 
 .formulario form {
-    background-color: yellow;
-    width: 80%;
-    height: 70%;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
+  background-color: #59db7970;
+  backdrop-filter: blur(20px);
+  color: #fff;
+  border-radius: 15px;
+  width: 80%;
+  height: 70%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .saudacoes {
-    background-color: red;
-    width: 100%;
-    text-align: center;
-    padding: 35px;
-    font-size: 30px;
+  width: 100%;
+  text-align: center;
+  padding: 35px;
+  font-size: 30px;
 }
 
-.email, .senha {
-    background-color: aqua;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 30%;
-    padding: 35px;
-    margin-bottom: -40px;
-    font-size: 25px;
-    /* padding: 10px; */
+.email,
+.senha {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 30%;
+  padding: 35px;
+  margin-bottom: -40px;
+  font-size: 25px;
+}
+
+.email p,
+.senha p {
+  margin-bottom: 5px;
 }
 
 .senha {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
 
-.email input, .senha input{
-    height: 50px;
-    border-radius: 2px 20px 2px 20px;
-    padding-left: 10px;
-    font-size: 15px;
+.email input,
+.senha input {
+  background-color: #ffffff9e;
+  height: 50px;
+  border-radius: 2px 20px 2px 20px;
+  padding-left: 15px;
+  font-size: 15px;
+  border-style: none;
+  outline: none;
+}
+
+input::placeholder {
+  color: #358549;
 }
 
 .botao-erro {
-    background-color: green;
-    width: 100%;
-    height: 30%;
-    margin-top: -40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  width: 100%;
+  height: 30%;
+  margin-top: -80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .botao-erro button {
-    width: 50%;
-    height: 30%;
-    margin-bottom: 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 20px;
+  width: 50%;
+  height: 30%;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 20px;
+  border-style: none;
+  background-color: #235a31;
+  color: #d8d8d8;
+}
+
+.botao-erro a {
+  margin-top: -10px;
+  color: #69fd8e;
 }
 
 .botao-erro button:hover {
-    background-color: blue;
-    color: #fff;
-    transition: all 0.2s;
+  background-color: #46c265b7;
+  color: #fff;
+  transition: all 0.2s;
+  box-shadow: #0d491c 0 0 8px;
 }
 
 .botao-erro p {
-    color: #500101;
-    font-size: 20px;
+  margin-top: 10px;
+  color: #ffee00;
+  font-size: 20px;
 }

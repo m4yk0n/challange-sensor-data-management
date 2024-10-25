@@ -52,7 +52,7 @@ function Graficos({ periodo }) {
       {
         label: "Maiores Médias",
         data: dadosMaiores.map((d) => d.valor),
-        backgroundColor: "rgb(178,34,34)",
+        backgroundColor: "#59db79",
         sensors: dadosMaiores.map((d) => d.sensor),
       },
     ],
@@ -64,7 +64,7 @@ function Graficos({ periodo }) {
       {
         label: "Menores Médias",
         data: dadosMenores.map((d) => d.valor),
-        backgroundColor: "rgb(30,144,255)",
+        backgroundColor: "#245731",
         sensors: dadosMenores.map((d) => d.sensor),
       },
     ],
@@ -75,7 +75,7 @@ function Graficos({ periodo }) {
     responsive: true,
     plugins: {
       legend: {
-        display: false,
+        display: false, // Desativa a exibição da legenda
       },
       tooltip: {
         callbacks: {
@@ -91,7 +91,19 @@ function Graficos({ periodo }) {
         },
       },
     },
+    scales: {
+      y: {
+        display: false,
+      },
+      x: {
+        ticks: {
+          color: "white",
+        },
+      },
+    },
   };
+  
+  
 
   return (
     <div className="graficos">
