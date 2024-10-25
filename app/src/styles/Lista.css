@@ -39,13 +39,5 @@
     flex-direction: column;
 }
 
-.status .bom {
-    color: green;
-  }
-  .status .alto {
-    color: red;
-  }
-  .status .baixo {
-    color: orange;
-  }
+
   

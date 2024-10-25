@@ -1,85 +1,88 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useQuery, gql } from "@apollo/client";
 import "../styles/Dashboards.css";
 
+const LEITURAS_E_SENSORES = gql`
+  query LeiturasPeriodos($fkUsuario: Int!) {
+    leiturasPeriodos(fkUsuario: $fkUsuario) {
+      ultimas24Horas {
+        fkSensor
+        media_temperatura
+      }
+      ultimas48Horas {
+        fkSensor
+        media_temperatura
+      }
+      ultimos7Dias {
+        fkSensor
+        media_temperatura
+      }
+      ultimos30Dias {
+        fkSensor
+        media_temperatura
+      }
+    }
+    totalSensores(fkUsuario: $fkUsuario)
+  }
+`;
+
 function KPI({ indicePeriodo, avancar, voltar }) {
-  const periodos = ["24 horas", "48 horas", "1 semana", "1 mês"];
+  const fkUsuario = parseInt(sessionStorage.getItem("idUsuario"), 10);
+  const { loading, error, data } = useQuery(LEITURAS_E_SENSORES, {
+    variables: { fkUsuario },
+  });
 
-  // Desabilitar navegação das KPIs
-  const maxEsquerda = indicePeriodo === 0;
-  const maxDireita = indicePeriodo === periodos.length - 1;
+  const periodos = ["ultimas24Horas", "ultimas48Horas", "ultimos7Dias", "ultimos30Dias"];
+  const periodoAtual = periodos[indicePeriodo];
+  const periodosFormatados = ["24 Horas", "48 Horas", "7 Dias", "30 Dias"]
 
-  // Médias de temperatura
   const [maiorMedia, setMaiorMedia] = useState(0);
   const [menorMedia, setMenorMedia] = useState(0);
-
-  // Sensores
   const [maiorSensor, setMaiorSensor] = useState("");
   const [menorSensor, setMenorSensor] = useState("");
   const [totalSensor, setTotalSensor] = useState(0);
 
   useEffect(() => {
-    atualizarKPIs(periodos[indicePeriodo]);
-  }, [indicePeriodo]);
+    if (data) {
+      const leituras = data.leiturasPeriodos[periodoAtual];
+      const total = data.totalSensores;
 
-  async function atualizarKPIs(periodo) {
-    try {
-      const response = await fetch("/dadosSensores.json");
-      const data = await response.json();
+      if (leituras && leituras.length > 0) {
+        const maior = leituras.reduce((prev, curr) => (prev.media_temperatura > curr.media_temperatura ? prev : curr));
+        const menor = leituras.reduce((prev, curr) => (prev.media_temperatura < curr.media_temperatura ? prev : curr));
 
-      console.log("Dados carregados:", data); // Verifica se os dados foram carregados
-
-      const periodoData = data.periodos[periodo];
-
-      if (periodoData) {
-        const maiores = periodoData.dadosMaiores;
-        const menores = periodoData.dadosMenores;
-
-        if (maiores.length > 0) {
-          const maior = maiores.reduce((prev, current) =>
-            prev.valor > current.valor ? prev : current
-          );
-          setMaiorMedia(maior.valor);
-          setMaiorSensor(maior.sensor);
-        }
-
-        if (menores.length > 0) {
-          const menor = menores.reduce((prev, current) =>
-            prev.valor < current.valor ? prev : current
-          );
-          setMenorMedia(menor.valor);
-          setMenorSensor(menor.sensor);
-        }
-
-        // Calcular total de sensores
-        const totalSensores = maiores.length + menores.length;
-        setTotalSensor(totalSensores);
-      } else {
-        console.warn("Nenhum dado encontrado para o período:", periodo);
+        setMaiorMedia(maior.media_temperatura);
+        setMaiorSensor(maior.fkSensor);
+        setMenorMedia(menor.media_temperatura);
+        setMenorSensor(menor.fkSensor);
+        setTotalSensor(total);
       }
-    } catch (error) {
-      console.error("Erro ao carregar os dados:", error);
     }
-  }
+  }, [data, periodoAtual]);
+
+  if (loading) return <div>Carregando KPIs...</div>;
+  if (error) return <div>Erro ao carregar KPIs: {error.message}</div>;
 
   return (
     <div className="KPIS">
       <h2 className="nav">Escolha <br /> Um Período</h2>
       <h3 className="navegacao-kpis">
-        <span id="voltar"
-        onClick={!maxEsquerda ? voltar : null}
-        className={maxEsquerda ? "atingido" : ""}
+        <span
+          id="voltar"
+          onClick={indicePeriodo > 0 ? voltar : null}
+          className={indicePeriodo === 0 ? "atingido" : ""}
         >
           &#9664;
         </span>
-        <p>{periodos[indicePeriodo]}</p>
-        <span id="avancar"
-        onClick={!maxDireita ? avancar : null}
-        className={maxDireita ? "atingido" : ""}
+        <p>{periodosFormatados[indicePeriodo].replace("ultimas", "")}</p>
+        <span
+          id="avancar"
+          onClick={indicePeriodo < periodos.length - 1 ? avancar : null}
+          className={indicePeriodo === periodos.length - 1 ? "atingido" : ""}
         >
           &#9654;
         </span>
       </h3>
-          {/* <h2>KPIs</h2> */}
       <div className="KPI">
         <h3>MAIOR MÉDIA</h3>
         <span className="indicador">{maiorMedia}ºC</span>

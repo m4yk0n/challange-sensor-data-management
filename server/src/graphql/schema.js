@@ -31,6 +31,7 @@ const schema = buildSchema(`
     sensores(fkUsuario: Int): [Sensor]
     leituras(fkSensor: String): [LeituraSensor]
     leiturasPeriodos(fkUsuario: Int): LeituraPeriodos
+    totalSensores(fkUsuario: Int!): Int
   }
   
   type Mutation {
