@@ -57,39 +57,6 @@ const resolvers = {
       usuario,
     };
   },
-  // leiturasPeriodos: async ({ fkUsuario }) => {
-  //   const now = new Date();
-  //   const umDiaAtras = new Date(now.getTime() - 24 * 60 * 60 * 1000);
-  //   const doisDiasAtras = new Date(now.getTime() - 48 * 60 * 60 * 1000);
-  //   const seteDiasAtras = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-  //   const trintaDiasAtras = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-  
-  //   const query = `
-  //     SELECT 
-  //       fkSensor,
-  //       FORMAT(AVG(media_temperatura), 2) AS media_temperatura
-  //     FROM 
-  //       leituraSensor 
-  //     WHERE 
-  //       fkUsuario = ? AND dtLeitura >= ?
-  //     GROUP BY 
-  //       fkSensor
-  //     ORDER BY 
-  //       fkSensor;
-  //   `;
-  
-  //   const [leituras24Horas] = await db.query(query, [fkUsuario, umDiaAtras]);
-  //   const [leituras48Horas] = await db.query(query, [fkUsuario, doisDiasAtras]);
-  //   const [leituras7Dias] = await db.query(query, [fkUsuario, seteDiasAtras]);
-  //   const [leituras30Dias] = await db.query(query, [fkUsuario, trintaDiasAtras]);
-  
-  //   return {
-  //     ultimas24Horas: leituras24Horas,
-  //     ultimas48Horas: leituras48Horas,
-  //     ultimos7Dias: leituras7Dias,
-  //     ultimos30Dias: leituras30Dias,
-  //   };
-  // }
   leiturasPeriodos: async ({ fkUsuario }) => {
     const now = new Date();
     const umDiaAtras = new Date(now.getTime() - 24 * 60 * 60 * 1000);
@@ -141,6 +108,101 @@ const resolvers = {
     );
     return rows[0].total;
   },
+  // inserirDados: async ({ dados }) => {
+  //   console.log("Dados recebidos na mutação:", dados);
+  
+  //   if (!dados || dados.length === 0) {
+  //     console.warn("Nenhum dado recebido para inserção.");
+  //     return { sucesso: false, mensagem: "Nenhum dado para inserir." };
+  //   }
+  
+  //   const values = dados.map((dado) => {
+  //     return `("${dado.fkSensor}", "${dado.dtLeitura}", ${dado.media_temperatura}, ${dado.fkUsuario})`;
+  //   });
+  
+  //   const query = `
+  //     INSERT INTO leituraSensor (fkSensor, dtLeitura, media_temperatura, fkUsuario)
+  //     VALUES ${values.join(", ")}
+  //   `;
+  
+  //   try {
+  //     await db.query(query); // Aguarda a execução da query
+  //     console.log("Dados inseridos com sucesso.");
+  //     return { sucesso: true, mensagem: "Dados inseridos com sucesso!" };
+  //   } catch (error) {
+  //     console.error("Erro ao inserir dados:", error);
+  //     return { sucesso: false, mensagem: "Erro ao inserir dados." };
+  //   }
+  // }  
+  // inserirDados: async ({ dados }) => {
+  //   console.log("Dados recebidos na mutação:", dados);
+  
+  //   if (!dados || dados.length === 0) {
+  //     console.warn("Nenhum dado recebido para inserção.");
+  //     return { sucesso: false, mensagem: "Nenhum dado para inserir." };
+  //   }
+  
+  //   const values = dados.map((dado) => {
+  //     if (!dado.fkUsuario) {
+  //       console.error("fkUsuario não está definido para o dado:", dado);
+  //       return null; 
+  //     }
+  //     return `("${dado.fkSensor}", "${dado.dtLeitura}", ${dado.media_temperatura}, ${dado.fkUsuario})`;
+  //   }).filter(Boolean); 
+  
+  //   if (values.length === 0) {
+  //     return { sucesso: false, mensagem: "Nenhum dado válido para inserir." };
+  //   }
+  
+  //   const query = `
+  //     INSERT INTO leituraSensor (fkSensor, dtLeitura, media_temperatura, fkUsuario)
+  //     VALUES ${values.join(", ")}
+  //   `;
+  
+  //   try {
+  //     await db.query(query);
+  //     console.log("Dados inseridos com sucesso.");
+  //     return { sucesso: true, mensagem: "Dados inseridos com sucesso!" };
+  //   } catch (error) {
+  //     console.error("Erro ao inserir dados:", error.message || error);
+  //     return { sucesso: false, mensagem: "Erro ao inserir dados." };
+  //   }
+  // }
+  inserirDados: async ({ dados }) => {
+    console.log("Dados recebidos na mutação:", JSON.stringify(dados, null, 2)); // Log detalhado
+    
+    if (!dados || dados.length === 0) {
+      console.warn("Nenhum dado recebido para inserção.");
+      return { sucesso: false, mensagem: "Nenhum dado para inserir." };
+    }
+  
+    const values = dados.map((dado) => {
+      if (!dado.fkUsuario) {
+        console.error("fkUsuario não está definido para o dado:", dado);
+        return null; // Ignorar se fkUsuario não estiver definido
+      }
+      return `("${dado.fkSensor}", "${dado.dtLeitura}", ${dado.media_temperatura}, ${dado.fkUsuario})`;
+    }).filter(Boolean); // Filtra valores null
+  
+    if (values.length === 0) {
+      return { sucesso: false, mensagem: "Nenhum dado válido para inserir." };
+    }
+  
+    const query = `
+      INSERT INTO leituraSensor (fkSensor, dtLeitura, media_temperatura, fkUsuario)
+      VALUES ${values.join(", ")}
+    `;
+  
+    try {
+      console.log("Executando a query:", query); // Log da query
+      await db.query(query);
+      console.log("Dados inseridos com sucesso.");
+      return { sucesso: true, mensagem: "Dados inseridos com sucesso!" };
+    } catch (error) {
+      console.error("Erro ao inserir dados:", error.message || error);
+      return { sucesso: false, mensagem: "Erro ao inserir dados." };
+    }
+  }    
 };
 
 module.exports = resolvers;

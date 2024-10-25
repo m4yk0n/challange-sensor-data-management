@@ -1,0 +1,52 @@
+.tela {
+    display: flex;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 84vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    display: flex;
+    background-color: #1b72318f;
+    flex-direction: column;
+    width: 30%;
+    height: 60%;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    border-radius: 20px 2px 20px 2px;
+}
+
+.box h2 {
+    color: #fff;
+    font-size: 30px;
+    display: flex;
+    margin-top: -100px;
+}
+
+.box input {
+    margin-top: 100px;
+    font-size: 15px;
+}
+
+.box button {
+    background-color: #59db79;
+    width: 150px;
+    height: 50px;
+    border-radius: 40px;
+    color: #fff;
+    margin-top: 70px;
+    margin-bottom: -80px;
+    cursor: pointer;
+    border-style: none;
+}
+
+.box button:hover {
+    background-color: #59db798c;
+    color: #000;
+}

@@ -3,6 +3,7 @@ import MenuLateral from "./MenuLateral";
 import Dashboards from "./Dashboards";
 import ListaSensores from "./ListaSensores";
 import LoginPage from "./LoginUsuario";
+import CSVUpload from "./CSVUpload";
 import "../styles/App.css";
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
       case "Sensores":
         return <ListaSensores />;
       case "Configuracoes":
-        return <Dashboards />;
+        return <CSVUpload />;
       case "Suporte":
         return <Dashboards />;
       default:

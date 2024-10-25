@@ -25,7 +25,7 @@ function Opcoes({ onChangeComponente, onLogout }) {
         </li>
         <li>
           <a className="opcao" href="#" onClick={() => onChangeComponente("Configuracoes")}>
-            Configurações
+            Upload CSV
           </a>
         </li>
         <li>

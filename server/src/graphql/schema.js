@@ -20,10 +20,17 @@ const schema = buildSchema(`
   }
   
   type LeituraPeriodos {
-  ultimas24Horas: [LeituraSensor]
-  ultimas48Horas: [LeituraSensor]
-  ultimos7Dias: [LeituraSensor]
-  ultimos30Dias: [LeituraSensor]
+    ultimas24Horas: [LeituraSensor]
+    ultimas48Horas: [LeituraSensor]
+    ultimos7Dias: [LeituraSensor]
+    ultimos30Dias: [LeituraSensor]
+  }
+
+  input LeituraSensorInput {
+    fkSensor: String!
+    dtLeitura: String!
+    media_temperatura: Float!
+    fkUsuario: Int!
   }
 
   type Query {
@@ -35,8 +42,9 @@ const schema = buildSchema(`
   }
   
   type Mutation {
-  adicionarUsuario(nome: String!, email: String!, senha: String!): Usuario
-  login(email: String!, senha: String!): LoginResponse
+    adicionarUsuario(nome: String!, email: String!, senha: String!): Usuario
+    login(email: String!, senha: String!): LoginResponse
+    inserirDados(dados: [LeituraSensorInput]!): uploadResponse!
   }
   
   type LoginResponse {
@@ -45,6 +53,10 @@ const schema = buildSchema(`
     usuario: Usuario
   }
 
+  type uploadResponse {
+    sucesso: Boolean!
+    mensagem: String!
+  }
 `);
 
 module.exports = schema;
